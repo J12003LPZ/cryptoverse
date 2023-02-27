@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react"; // import the News.css file for styling
+import React, { useState, useEffect } from "react";
+import { Card, Button } from "antd"; // import the Card and Button components from Ant Design
+import "antd/dist/antd.css"; // import Ant Design CSS
+import { Link } from "react-router-dom";
 
 function News() {
   const [articles, setArticles] = useState([]);
@@ -18,31 +21,32 @@ function News() {
   }, []);
 
   return (
-    <div class="w-full max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden">
-      <div class="px-6 py-4">
-        <div class="articles-container">
+    <Card className="w-full max-w-md mx-auto bg-white rounded-md shadow-md overflow-hidden">
+      <div className="px-6 py-4">
+        <div className="articles-container">
           {articles.map((article) => (
-            <div
-              class="bg-gray-100 border border-gray-200 p-4 mb-4 rounded-md"
+            <Card
+              className="bg-gray-100 border border-gray-200 p-4 mb-4 rounded-md"
               key={article.title}
             >
-              <div class="text-sm text-gray-600 mb-2">{article.date}</div>
-              <h3 class="font-bold text-lg mb-2">{article.title}</h3>
-              <p class="text-gray-700">
+              <div className="text-sm text-gray-600 mb-2">{article.date}</div>
+              <h3 className="font-bold text-lg mb-2">
+                <strong>{article.title}</strong>
+              </h3>
+              <p className="text-gray-700">
                 {article.description}{" "}
-                <a
+                <Link
                   href={article.url}
-                  class="mt-2 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                  style={{ marginBottom: "30px" }}
+                  style={{ marginBottom: "30px", color: "blue" }}
                 >
                   Read More
-                </a>
+                </Link>
               </p>
-            </div>
+            </Card>
           ))}
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
 
